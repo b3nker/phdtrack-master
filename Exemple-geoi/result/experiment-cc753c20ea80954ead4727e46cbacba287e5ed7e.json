@@ -1,0 +1,75 @@
+{
+  "id" : "cc753c20ea80954ead4727e46cbacba287e5ed7e",
+  "name" : "geoi",
+  "workflow" : {
+    "graph" : [
+      {
+        "name" : "EventSource",
+        "op" : "EventSource",
+        "inputs" : {
+          "url" : {
+            "param" : "url",
+            "default_value" : "/home/hacker/projet_mobility/sc/test-accio/42-fixed-3600-gap-900-accio"
+          },
+          "kind" : {
+            "value" : "csv"
+          },
+          "sample" : {
+            "value" : null
+          },
+          "users" : {
+            "value" : [ ]
+          }
+        },
+        "outputs" : {
+          "data" : [
+            "GeoIndistinguishability/data"
+          ]
+        }
+      },
+      {
+        "name" : "GeoIndistinguishability",
+        "op" : "GeoIndistinguishability",
+        "inputs" : {
+          "epsilon" : {
+            "value" : 0.01
+          },
+          "data" : {
+            "reference" : "EventSource/data"
+          }
+        },
+        "outputs" : { }
+      }
+    ],
+    "owner" : "MoMa <mohamed.maouche@insa-lyon.fr",
+    "name" : "A",
+    "params" : [
+      {
+        "name" : "url",
+        "type" : "string",
+        "is_optional" : true,
+        "ports" : [
+          "EventSource/url"
+        ]
+      }
+    ]
+  },
+  "owner" : "khalfoun-besma",
+  "repeat" : 1,
+  "tags" : [ ],
+  "params" : {
+    "url" : {
+      "value" : "./Exemple-geoi/result//data-accio"
+    }
+  },
+  "seed" : -4834347760825435824,
+  "report" : {
+    "started_at" : 1614018054290,
+    "completed_at" : 1614018055751,
+    "runs" : [
+      "c64f923acb177d80b47a234762111f78dc9fbae6"
+    ],
+    "duration" : 1461,
+    "completed" : true
+  }
+}

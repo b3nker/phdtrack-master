@@ -1,0 +1,167 @@
+{
+  "id" : "80452b10ce2788a416ceb89e90cc4fe96bf38c76",
+  "name" : "ap-attack",
+  "workflow" : {
+    "graph" : [
+      {
+        "name" : "EventSourceTrain",
+        "op" : "EventSource",
+        "inputs" : {
+          "url" : {
+            "param" : "urlTrain",
+            "default_value" : "/home/hacker/projet_mobility/sc/train-accio"
+          },
+          "kind" : {
+            "value" : "csv"
+          },
+          "sample" : {
+            "value" : null
+          },
+          "users" : {
+            "value" : [ ]
+          }
+        },
+        "outputs" : {
+          "data" : [
+            "MatMatchingKSetsnonObf/train"
+          ]
+        }
+      },
+      {
+        "name" : "EventSourceTest",
+        "op" : "EventSource",
+        "inputs" : {
+          "url" : {
+            "param" : "urlTest",
+            "default_value" : "/home/hacker/projet_mobility/sc/test-accio"
+          },
+          "kind" : {
+            "value" : "csv"
+          },
+          "sample" : {
+            "value" : null
+          },
+          "users" : {
+            "value" : [ ]
+          }
+        },
+        "outputs" : {
+          "data" : [
+            "MatMatchingKSetsnonObf/test"
+          ]
+        }
+      },
+      {
+        "name" : "MatMatchingKSetsnonObf",
+        "op" : "MatMatchingKSets",
+        "inputs" : {
+          "test" : {
+            "reference" : "EventSourceTest/data"
+          },
+          "distanceType" : {
+            "param" : "distanceType",
+            "default_value" : -51
+          },
+          "diag" : {
+            "value" : "250000.0.meters"
+          },
+          "matrixType" : {
+            "param" : "matrixType",
+            "default_value" : "full"
+          },
+          "cellSize" : {
+            "param" : "cellSize",
+            "default_value" : "800.0.meters"
+          },
+          "lat1" : {
+            "value" : -61.0
+          },
+          "lat2" : {
+            "value" : 80.0
+          },
+          "lng2" : {
+            "value" : 171.0
+          },
+          "train" : {
+            "reference" : "EventSourceTrain/data"
+          },
+          "ang" : {
+            "value" : 45.0
+          },
+          "lng1" : {
+            "value" : -131.0
+          }
+        },
+        "outputs" : { }
+      }
+    ],
+    "owner" : "Besma",
+    "name" : "A",
+    "params" : [
+      {
+        "name" : "matrixType",
+        "type" : "string",
+        "is_optional" : true,
+        "ports" : [
+          "MatMatchingKSetsnonObf/matrixType"
+        ]
+      },
+      {
+        "name" : "urlTrain",
+        "type" : "string",
+        "is_optional" : true,
+        "ports" : [
+          "EventSourceTrain/url"
+        ]
+      },
+      {
+        "name" : "cellSize",
+        "type" : "distance",
+        "is_optional" : true,
+        "ports" : [
+          "MatMatchingKSetsnonObf/cellSize"
+        ]
+      },
+      {
+        "name" : "distanceType",
+        "type" : "integer",
+        "is_optional" : true,
+        "ports" : [
+          "MatMatchingKSetsnonObf/distanceType"
+        ]
+      },
+      {
+        "name" : "urlTest",
+        "type" : "string",
+        "is_optional" : true,
+        "ports" : [
+          "EventSourceTest/url"
+        ]
+      }
+    ]
+  },
+  "owner" : "benjamin",
+  "repeat" : 1,
+  "tags" : [ ],
+  "params" : {
+    "urlTrain" : {
+      "value" : "mini-priva/result-mini-priva/train-merged-accio/"
+    },
+    "urlTest" : {
+      "value" : "mini-priva/result-mini-priva/test-accio/"
+    },
+    "cellSize" : {
+      "value" : "800.0.meters"
+    }
+  },
+  "seed" : 863870868685800945,
+  "report" : {
+    "started_at" : 1614074352918,
+    "completed_at" : 1614074353351,
+    "runs" : [
+      "02eeec29641cb233213ab04884b6037356b7ab15"
+    ],
+    "duration" : 433,
+    "completed" : true
+  }
+}

@@ -1,0 +1,8 @@
+Writing progress in [33m/home/benjamin/Bureau/phdtrack-master/Exemple-ap-attack/result[0m
+Experiment 80452b10: [32map-attack[0m
+  Run 02eeec29: [32map-attack:urlTrain=mini-priva/result-mini-priva/train-merged-accio/,urlTest=mini-priva/result-mini-priva/test-accio/,cellSize=800.0.meters[0m
+    EventSourceTrain    EventSourceTest     MatMatchingKSetsnonObflist of user size = 3  and equal 
+  Set(1, 2, 7)
+AP-Attack user re-identified : Set()
+AP-Attack rate : 0.45
+                              Done in 0s. Reports in [33m/home/benjamin/Bureau/phdtrack-master/Exemple-ap-attack/result[0m
