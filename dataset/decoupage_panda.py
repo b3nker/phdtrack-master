@@ -35,17 +35,18 @@ if not os.path.exists(test):
 	os.makedirs(test)
 
 
-files = [filename.split('.')[0] for filename in os.listdir(inputDirectory) if filename.endswith(".csv")]
+files = [filename.split('.')[0] for filename in os.listdir(inputDirectory) if filename.endswith(".csv")] #Ensemble des noms de fichiers
 #print(files)
 serie=pd.Series(files)
 #print(serie)
-df=serie.str.split('-',expand=True)
+df=serie.str.split('-',expand=True) #Dataframe
 #print(df)
 #print(df[1].max())
+print(df.columns[1:])
 for c in df.columns[1:]:
 	df[c]=df[c].apply(int)
 #print(df)
-df=df.sort_values(by=list(df.columns),axis=0)
+df=df.sort_values(by=list(df.columns),axis=0) #Tri selon le id
 #print(df)
 df['name']=df[0]
 #print(df['name'])
