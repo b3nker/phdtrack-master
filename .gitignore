@@ -1,1 +1,7 @@
 *.csv
+
+output/
+train/
+test/
+mini-priva/
+result/
