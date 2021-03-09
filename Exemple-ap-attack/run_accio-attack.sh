@@ -19,8 +19,8 @@ log=$(mktemp $possibleLog)
 java -jar  accio.jar run -workdir $workdir -params "urlTrain=$urlTrain urlTest=$urlTest cellSize=$cellSize"  $json >> $log
 
 #Pour recuperer l'accuracy ( taux de re-identification des traces de mobilité): 
-#accuracy=$(bash getRate.sh "AP-Attack rate" $log)   # "POI-Attack rate" dans le cas de poi-attack
-#echo "$accuracy
+accuracy=$(bash getRate.sh "AP-Attack rate" $log)   # "POI-Attack rate" dans le cas de poi-attack
+echo "$accuracy"
 
 #bash Exemple-ap-attack/run_accio-attack.sh mini-priva/result-mini-priva/train-merged-accio/  mini-priva/result-mini-priva/test-accio/ Exemple-ap-attack/result/
 
