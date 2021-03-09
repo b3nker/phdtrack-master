@@ -1,6 +1,6 @@
 
 
-
+import time
 import sys
 import os
 import numpy as np
@@ -14,6 +14,7 @@ import psutil
 
 def splitTraceByTimeGamp(trace,minGap):
 	df = pd.read_csv(trace,names=['lat','lng','timestamp'])
+	print(df)
 	try:
 		df['timestamp']=pd.to_datetime(df['timestamp'], unit='ms')
 	except:
@@ -24,7 +25,7 @@ def splitTraceByTimeGamp(trace,minGap):
 
 def splitTraceByFixedSlices(trace,sliceSize):
 	#try:
-	df = pd.read_csv(trace,names=['lat','lng','timestamp'])
+	df = pd.read_csv(trace,names=['id_user', 'lat','lng','timestamp'],header=0)
 	df['timestamp']=pd.to_datetime(df['timestamp'], unit='ms')
 	#df['bin'] = df['timestamp']#.apply(lambda x: x)
 	minTime= df['timestamp'].min()
@@ -33,11 +34,12 @@ def splitTraceByFixedSlices(trace,sliceSize):
 	listBins=list(df['bin'].unique())
 	#print(listBins)
 	df['bin']=df['bin'].apply(lambda x: listBins.index(x))
-	# except Exception as e:
-	# 	print("Exception:")
-	# 	print("\n\n"+str(e))
-	# 	print(traceback.format_exc())
-	# 	raise(e)
+	#except Exception as e:
+	#	print("Exception:")
+	#	print("\n\n"+str(e))
+	#	print(traceback.format_exc())
+	#	raise(e)
+	#print(df['timestamp'])
 	return dict(tuple( df.groupby('bin')))
 
 def getTraceDuration(dataframe):
@@ -59,7 +61,8 @@ def processCsvTraceFile(filename,inputDirectory,outputDirectory,sliceSize):
 #		nbRecord=len(value)
 #		traceDuration= getTraceDuration(value)
 #		if int(nbRecord) >= minRecord and traceDuration >= minDuration:
-		value.to_csv(os.path.join(outputDirectory, name+"-"+str(int(key))+".csv"),index=False,columns=['lat','lng','timestamp'],header=False)
+		value['timestamp']=value['timestamp'].apply(lambda x :"%d" % (time.mktime( x.timetuple())*1000+ x.microsecond/1000) )
+		value.to_csv(os.path.join(outputDirectory, name+"-"+str(int(key))+".csv"),index=False,columns=['id_user','lat','lng','timestamp'],header=False)
 #			cpt=cpt+1
 
 
@@ -83,7 +86,6 @@ if not os.path.exists(outputDirectory):
 
 # Create pool of processes
 executor = concurrent.futures.ProcessPoolExecutor(NB_PROCESS)
-
 
 # For each trace launch the trace processing job
 futures = [executor.submit(processCsvTraceFile,filename,inputDirectory,outputDirectory,sliceSize) for filename in os.listdir(inputDirectory) if filename.endswith(".csv")]

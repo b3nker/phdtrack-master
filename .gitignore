@@ -1,1 +1,8 @@
 *.csv
+*.jar
+output/
+train/
+test/
+mini-priva/
+result/
+slices_by_timestamp/

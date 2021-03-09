@@ -8,7 +8,7 @@ log=$(mktemp $possibleLog)
 
 
 #Prepare data for accio ( Add the 4th column of IDs)
-python prepareTraceForAccio.py $urlData "$workdir/data-accio"
+python3 prepareTraceForAccio.py $urlData "$workdir/data-accio"
 
 #Run accio
 java -jar accio.jar run -workdir $workdir -params "url=$workdir/data-accio"  $json >> $log
@@ -16,7 +16,7 @@ java -jar accio.jar run -workdir $workdir -params "url=$workdir/data-accio"  $js
 
 #exemple d'utilisation de get path: 
 
-path_geoi=$(bash getPath.sh $log $workdir "GeoIndistinguishability/data")
+#path_geoi=$(bash getPath.sh $log $workdir "GeoIndistinguishability/data")
 
 #pour les autres LPPMs à la place de "GeoIndistinguishability/data" : "Promesse/data" , "HeatMapConfusion/out"
 
