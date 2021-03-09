@@ -1,5 +1,6 @@
 import sys
 import os
+import time
 import numpy as np
 import math
 import itertools
@@ -8,6 +9,7 @@ import datetime as dt
 import ntpath
 import concurrent.futures
 import psutil
+import traceback
 
 def splitTraceByTimeGamp(trace,minGap):
 	df = pd.read_csv(trace,names=['lat','lng','timestamp'])
@@ -20,21 +22,21 @@ def splitTraceByTimeGamp(trace,minGap):
 	return dict(tuple( df.groupby('gap')))
 
 def splitTraceByFixedSlices(trace,sliceSize):
-	#try:
-	df = pd.read_csv(trace,names=['lat','lng','timestamp'])
-	df['timestamp']=pd.to_datetime(df['timestamp'], unit='ms')
-	#df['bin'] = df['timestamp']#.apply(lambda x: x)
-	minTime= df['timestamp'].min()
-	#df['bin'] = df['timestamp'].apply(lambda x: (x-pd.Timestamp.min).total_seconds() // sliceSize)
-	df['bin'] = df['timestamp'].apply(lambda x: (x-minTime).total_seconds() // sliceSize)
-	listBins=list(df['bin'].unique())
-	#print(listBins)
-	df['bin']=df['bin'].apply(lambda x: listBins.index(x))
-	# except Exception as e:
-	# 	print("Exception:")
-	# 	print("\n\n"+str(e))
-	# 	print(traceback.format_exc())
-	# 	raise(e)
+	try:
+		df = pd.read_csv(trace,names=['id','lat','lng','timestamp'])#, header=0)
+		df['timestamp']=pd.to_datetime(df['timestamp'],unit='ms')
+		#df['bin'] = df['timestamp']#.apply(lambda x: x)
+		minTime= df['timestamp'].min()
+		#df['bin'] = df['timestamp'].apply(lambda x: (x-pd.Timestamp.min).total_seconds() // sliceSize)
+		df['bin'] = df['timestamp'].apply(lambda x: (x-minTime).total_seconds() // sliceSize)
+		listBins=list(df['bin'].unique())
+		#print(listBins)
+		df['bin']=df['bin'].apply(lambda x: listBins.index(x))
+	except Exception as e :
+	 	print("Exception:")
+	 	print("\n\n"+str(e))
+	 	print(traceback.format_exc())
+	 	raise(e)
 	return dict(tuple( df.groupby('bin')))
 
 def getTraceDuration(dataframe):
@@ -56,7 +58,9 @@ def processCsvTraceFile(filename,inputDirectory,outputDirectory,sliceSize):
 		#nbRecord=len(value)
 		#traceDuration= getTraceDuration(value)
 		#if int(nbRecord) >= minRecord and traceDuration >= minDuration:
-		value.to_csv(os.path.join(outputDirectory, name+"-"+str(int(key))+".csv"),index=False,columns=['lat','lng','timestamp'],header=False)
+		value['timestamp']=pd.to_datetime(value['timestamp'])
+		value['timestamp']=value['timestamp'].apply(lambda x :"%d" % (time.mktime( x.timetuple())*1000+ x.microsecond/1000) )
+		value.to_csv(os.path.join(outputDirectory, name+"-"+str(int(key))+".csv"),index=False,columns=['id','lat','lng','timestamp'],header=False)
 		#cpt=cpt+1
 
 #Start of script

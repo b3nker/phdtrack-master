@@ -1,5 +1,3 @@
-
-
 import csv
 import sys
 import os
@@ -15,9 +13,6 @@ import psutil
 import gc
 import time
 
-
-
-
 def prepareTrace(trace,countDict,inputDirectory,outputDirectory):
 	user=trace.split('-')[0]
 	# if user not in countDict:
@@ -28,7 +23,7 @@ def prepareTrace(trace,countDict,inputDirectory,outputDirectory):
 	# countDict[user]=idTrace
 
 	inputFile=os.path.join(inputDirectory, trace)
-	df = pd.read_csv(inputFile,names=['lat','lng','timestamp'],encoding ='iso-8859-1')
+	df = pd.read_csv(inputFile,names=['id','lat','lng','timestamp'],encoding ='iso-8859-1')
 	df['timestamp']=pd.to_datetime(df['timestamp'])
 	df['timestamp']=df['timestamp'].apply(lambda x :"%d" % (time.mktime( x.timetuple())*1000+ x.microsecond/1000) )
 	df['user']=user
@@ -37,17 +32,12 @@ def prepareTrace(trace,countDict,inputDirectory,outputDirectory):
 	# else:
 	# 	outputFile=os.path.join(outputDirectory, user+"-"+str(idTrace)+".csv")
 	outputFile=os.path.join(outputDirectory, trace)
-	df=df[['user', 'lat', 'lng', 'timestamp']]
+	df=df[['lat', 'lng', 'timestamp']]
 	df.to_csv(outputFile,index=False,header=False)
 	return countDict
 
-
-
-
 directory = sys.argv[1]
 outputDirectory = sys.argv[2]
-
-
 
 # mkdir the output directory
 if not os.path.exists(outputDirectory):

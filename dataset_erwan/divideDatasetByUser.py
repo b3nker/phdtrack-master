@@ -15,11 +15,13 @@ startTimer = time.time()
 with open(datasetPath) as f:
 	next(f)
 	i = 0
+	new_id_user = 1
 	for line in f :
 		newUser = line.split(",")[0]
 		currentUser = newUser
-		curFile = open(outputDirectory+"/"+newUser + ".csv", "a")
-		curFile.write("id_user, lat, long, timestamp\n")
+		#curFile = open(outputDirectory+"/"+newUser + ".csv", "a")
+		curFile = open(outputDirectory+"/"+str(new_id_user) + ".csv", "a")
+		#curFile.write("id_user, lat, lng, timestamp\n")
 		while currentUser == newUser :
 			data = line.split(",")
 			newUser = data[0]
@@ -29,19 +31,20 @@ with open(datasetPath) as f:
 			latitude = values[0]
 			longitude = values[1].rstrip("\n")
 			dt = datetime.strptime(timeStamp,'%Y-%m-%d %H:%M:%S')
-			timestamp_ms = dt.timestamp() * 1000
+			timestamp_ms = int(dt.timestamp() * 1000)
 			timestamp_ms_str = str(timestamp_ms)
-			curFile.write(newUser+","+latitude+","+longitude+","+timestamp_ms_str+"\n")
+			curFile.write(str(new_id_user)+","+latitude+","+longitude+","+timestamp_ms_str+"\n")
+			#curFile.write(newUser+","+latitude+","+longitude+","+timestamp_ms_str+"\n")
 			line = next(f)
 			i=i+1
-			print(i)
+			#print(i)
 		
 		curFile.close()
-		if i>1000000 :
+		new_id_user = new_id_user + 1
+		if i>1000 :
 			break
 
 endTimer = time.time()
 totalTime = endTimer - startTimer
 print(totalTime,"sec")
 
-	
