@@ -1,0 +1,165 @@
+{
+  "id" : "3e3cd3a0623d43da60cb7964a98b834b52363ca2",
+  "name" : "ap-attack",
+  "workflow" : {
+    "graph" : [
+      {
+        "name" : "EventSourceTrain",
+        "op" : "EventSource",
+        "inputs" : {
+          "url" : {
+            "param" : "urlTrain",
+            "default_value" : "/home/hacker/projet_mobility/sc/train-accio"
+          },
+          "kind" : {
+            "value" : "csv"
+          },
+          "sample" : {
+            "value" : null
+          },
+          "users" : {
+            "value" : [ ]
+          }
+        },
+        "outputs" : {
+          "data" : [
+            "MatMatchingKSetsnonObf/train"
+          ]
+        }
+      },
+      {
+        "name" : "EventSourceTest",
+        "op" : "EventSource",
+        "inputs" : {
+          "url" : {
+            "param" : "urlTest",
+            "default_value" : "/home/hacker/projet_mobility/sc/test-accio"
+          },
+          "kind" : {
+            "value" : "csv"
+          },
+          "sample" : {
+            "value" : null
+          },
+          "users" : {
+            "value" : [ ]
+          }
+        },
+        "outputs" : {
+          "data" : [
+            "MatMatchingKSetsnonObf/test"
+          ]
+        }
+      },
+      {
+        "name" : "MatMatchingKSetsnonObf",
+        "op" : "MatMatchingKSets",
+        "inputs" : {
+          "test" : {
+            "reference" : "EventSourceTest/data"
+          },
+          "distanceType" : {
+            "param" : "distanceType",
+            "default_value" : -51
+          },
+          "diag" : {
+            "value" : "250000.0.meters"
+          },
+          "matrixType" : {
+            "param" : "matrixType",
+            "default_value" : "full"
+          },
+          "cellSize" : {
+            "param" : "cellSize",
+            "default_value" : "800.0.meters"
+          },
+          "lat1" : {
+            "value" : -61.0
+          },
+          "lat2" : {
+            "value" : 80.0
+          },
+          "lng2" : {
+            "value" : 171.0
+          },
+          "train" : {
+            "reference" : "EventSourceTrain/data"
+          },
+          "ang" : {
+            "value" : 45.0
+          },
+          "lng1" : {
+            "value" : -131.0
+          }
+        },
+        "outputs" : { }
+      }
+    ],
+    "owner" : "Besma",
+    "name" : "A",
+    "params" : [
+      {
+        "name" : "matrixType",
+        "type" : "string",
+        "is_optional" : true,
+        "ports" : [
+          "MatMatchingKSetsnonObf/matrixType"
+        ]
+      },
+      {
+        "name" : "urlTrain",
+        "type" : "string",
+        "is_optional" : true,
+        "ports" : [
+          "EventSourceTrain/url"
+        ]
+      },
+      {
+        "name" : "cellSize",
+        "type" : "distance",
+        "is_optional" : true,
+        "ports" : [
+          "MatMatchingKSetsnonObf/cellSize"
+        ]
+      },
+      {
+        "name" : "distanceType",
+        "type" : "integer",
+        "is_optional" : true,
+        "ports" : [
+          "MatMatchingKSetsnonObf/distanceType"
+        ]
+      },
+      {
+        "name" : "urlTest",
+        "type" : "string",
+        "is_optional" : true,
+        "ports" : [
+          "EventSourceTest/url"
+        ]
+      }
+    ]
+  },
+  "owner" : "erwan",
+  "repeat" : 1,
+  "tags" : [ ],
+  "params" : {
+    "urlTrain" : {
+      "value" : "dataset_erwan/decoupages_dataset/train/"
+    },
+    "urlTest" : {
+      "value" : "dataset_erwan/decoupages_dataset/test/"
+    },
+    "cellSize" : {
+      "value" : "800.0.meters"
+    }
+  },
+  "seed" : -8485646645120631724,
+  "report" : {
+    "started_at" : 1615815531453,
+    "runs" : [
+      "d254143f4581e3643051a0e115375418524cb27b"
+    ],
+    "completed" : false
+  }
+}

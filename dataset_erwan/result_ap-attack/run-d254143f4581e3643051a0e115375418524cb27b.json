@@ -1,0 +1,57 @@
+{
+  "id" : "d254143f4581e3643051a0e115375418524cb27b",
+  "parent" : "3e3cd3a0623d43da60cb7964a98b834b52363ca2",
+  "name" : "ap-attack:urlTrain=dataset_erwan/decoupages_dataset/train/,urlTest=dataset_erwan/decoupages_dataset/test/,cellSize=800.0.meters",
+  "seed" : 8459261677366402128,
+  "params" : {
+    "urlTrain" : "dataset_erwan/decoupages_dataset/train/",
+    "urlTest" : "dataset_erwan/decoupages_dataset/test/",
+    "cellSize" : "800.0.meters"
+  },
+  "report" : {
+    "started_at" : 1615815531470,
+    "node_stats" : [
+      {
+        "name" : "EventSourceTrain",
+        "started_at" : 1615815531470,
+        "completed_at" : 1615815531498,
+        "successful" : true,
+        "duration" : 28,
+        "completed" : true
+      },
+      {
+        "name" : "EventSourceTest",
+        "started_at" : 1615815531510,
+        "completed_at" : 1615815531512,
+        "successful" : true,
+        "duration" : 2,
+        "completed" : true
+      },
+      {
+        "name" : "MatMatchingKSetsnonObf",
+        "started_at" : 1615815531514,
+        "completed" : false
+      }
+    ],
+    "artifacts" : [
+      {
+        "name" : "EventSourceTrain/data",
+        "type" : "dataset",
+        "value" : {
+          "uri" : "dataset_erwan/decoupages_dataset/train/",
+          "format" : "csv"
+        }
+      },
+      {
+        "name" : "EventSourceTest/data",
+        "type" : "dataset",
+        "value" : {
+          "uri" : "dataset_erwan/decoupages_dataset/test/",
+          "format" : "csv"
+        }
+      }
+    ],
+    "completed" : false,
+    "successful" : true
+  }
+}
