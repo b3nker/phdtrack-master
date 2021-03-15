@@ -17,29 +17,34 @@ start_time = time.time()
 datasetPath = sys.argv[1]
 outputDirectory = sys.argv[2]
 #Creates a dataframe
-df = pd.read_csv(datasetPath, nrows=1000000)
+df = pd.read_csv(datasetPath, nrows=100000)
 #print(df.phone.nunique()) #nb of unique users
 #Splits location column into 2 columns lat and long
 df[['lat', 'long']] = df['location'].str.split('|', 1, expand=True)
 df.drop('location', inplace=True, axis=1)
 
+if not os.path.exists(outputDirectory):
+	os.makedirs(outputDirectory)
+
 current_user = ''
+cpt = 0
 #Reads dataframe line by line
 for index, row in df.iterrows():
     row_id = row['phone']
-    row_lat = row['lat']
-    row_long = row['long']
+    row_lat = row['lat'] #dataset is wrong, lat is long 
+    row_long = row['long'] #dataset is wrong, long is lat
     row_time = date_to_millis(row['time'])
     if current_user != row_id:
         if current_user != '':
             current_file.close()
         current_user = row_id
-        if not os.path.exists(outputDirectory + '/' + row_id +".csv"):
-            current_file = open(outputDirectory + '/' + row_id +".csv", "a") # a: append
-            current_file.write("id_user, lat, long, timestamp\n")
+        cpt += 1
+        if not os.path.exists(outputDirectory + '/' + str(cpt) +".csv"):
+            current_file = open(outputDirectory + '/' + str(cpt) +".csv", "a") # a: append
+            current_file.write("id_user,lat,long,timestamp\n")
         else:
-            current_file = open(outputDirectory + '/' + row_id +".csv", "a") # a: append
-    current_file.write(str(row_id) + ', ' + str(row_lat) + ', ' + str(row_long) + ', ' + str(row_time) + '\n')
+            current_file = open(outputDirectory + '/' + str(cpt) +".csv", "a") # a: append
+    current_file.write(str(cpt) + ',' + str(row_long) + ',' + str(row_lat) + ',' + str(row_time) + '\n') #long -> lat and lat -> long
 
 #End timer
 end_time = time.time()

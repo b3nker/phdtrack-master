@@ -1,6 +1,5 @@
 *.csv
 *.jar
-
 output/
 train/
 test/
