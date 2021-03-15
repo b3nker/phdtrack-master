@@ -9,6 +9,7 @@ import ntpath
 import concurrent.futures
 import psutil
 import shutil
+import time
 
 
 
@@ -19,6 +20,9 @@ def copyTrainTest(name,seq,total,percentile,inputDirectory,trainDir,testDir):
 	else:
 		shutil.copyfile(inputDirectory+str(name)+'.csv',testDir+'/'+ str(name)+'.csv')
 
+
+#Start timer
+start_time = time.time()
 #inputs
 inputDirectory = sys.argv[1]
 train = sys.argv[2]
@@ -26,7 +30,7 @@ test=sys.argv[3]
 ratio=0.8
 if len(sys.argv)>4:
 	ratio=float(sys.argv[4])
-print("ratio==",ratio)
+#print("ratio==",ratio)
 # mkdir the output directory
 if not os.path.exists(train):
 	os.makedirs(train)
@@ -42,7 +46,7 @@ serie=pd.Series(files)
 df=serie.str.split('-',expand=True) #Dataframe
 #print(df)
 #print(df[1].max())
-print(df.columns[1:])
+#print(df.columns[1:])
 for c in df.columns[1:]:
 	df[c]=df[c].apply(int)
 #print(df)
@@ -70,6 +74,9 @@ for index, row in df.iterrows():
 	copyTrainTest(row['name'],seq,row['count'],ratio,inputDirectory,train,test)
 	currentUser=row[0]
 
+#End timer
+end_time = time.time()
+print("Spliting dataset in", ratio, "train, and ", round(1-ratio,2), "test\nExecution time : ",end_time - start_time, " sec")
 
 
 

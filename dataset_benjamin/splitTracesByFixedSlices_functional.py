@@ -11,6 +11,7 @@ import datetime as dt
 import ntpath
 import concurrent.futures
 import psutil
+import time
 
 def splitTraceByTimeGamp(trace,minGap):
 	df = pd.read_csv(trace,names=['lat','lng','timestamp'])
@@ -72,6 +73,9 @@ def processCsvTraceFile(filename,inputDirectory,outputDirectory,sliceSize):
 
 NB_PROCESS = psutil.cpu_count(logical=False)
 
+
+#Start timer
+start_time = time.time()
 #inputs
 inputDirectory = sys.argv[1]
 outputDirectory = sys.argv[2]
@@ -94,6 +98,10 @@ futures = [executor.submit(processCsvTraceFile,filename,inputDirectory,outputDir
 
 # Wait for the processes to finish
 concurrent.futures.wait(futures)
+
+#End timer
+end_time = time.time()
+print("Spliting dataset per traces\nExecution time : ",end_time - start_time, " sec")
 
 
 
