@@ -16,8 +16,9 @@ start_time = time.time()
 #Inputs
 datasetPath = sys.argv[1]
 outputDirectory = sys.argv[2]
+nbrows = int(sys.argv[3])
 #Creates a dataframe
-df = pd.read_csv(datasetPath, nrows=100000)
+df = pd.read_csv(datasetPath, nrows=nbrows)
 #print(df.phone.nunique()) #nb of unique users
 #Splits location column into 2 columns lat and long
 df[['lat', 'long']] = df['location'].str.split('|', 1, expand=True)
@@ -50,6 +51,6 @@ for index, row in df.iterrows():
 end_time = time.time()
 #Prints infos
 #print(df)
-print("Execution time : ",end_time - start_time, " sec")
+print("Spliting dataset per user\nExecution time : ",end_time - start_time, " sec")
 #print(df[['phone']])
  
