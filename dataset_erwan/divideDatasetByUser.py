@@ -5,6 +5,7 @@ from datetime import datetime
 
 datasetPath = sys.argv[1]
 outputDirectory = sys.argv[2]
+numberOfLine = int(sys.argv[3])
 
 if not os.path.exists(outputDirectory):
 	os.makedirs(outputDirectory)
@@ -28,8 +29,8 @@ with open(datasetPath) as f:
 			timeStamp = data[1]
 			coordonates = data[2]
 			values = coordonates.split("|")
-			latitude = values[0]
-			longitude = values[1].rstrip("\n")
+			longitude = values[0]
+			latitude = values[1].rstrip("\n")
 			dt = datetime.strptime(timeStamp,'%Y-%m-%d %H:%M:%S')
 			timestamp_ms = int(dt.timestamp() * 1000)
 			timestamp_ms_str = str(timestamp_ms)
@@ -41,7 +42,7 @@ with open(datasetPath) as f:
 		
 		curFile.close()
 		new_id_user = new_id_user + 1
-		if i>1000 :
+		if i>numberOfLine :
 			break
 
 endTimer = time.time()

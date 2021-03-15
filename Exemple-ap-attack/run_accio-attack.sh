@@ -16,7 +16,7 @@ log=$(mktemp $possibleLog)
 #python prepareTraceForAccio.py $urlTest "$workdir/test-accio"
 
 #Run accio
-java -jar  accio2.jar run -workdir $workdir -params "urlTrain=$urlTrain urlTest=$urlTest cellSize=$cellSize"  $json >> $log
+java -jar  accio.jar run -workdir $workdir -params "urlTrain=$urlTrain urlTest=$urlTest cellSize=$cellSize"  $json >> $log
 
 #Pour recuperer l'accuracy ( taux de re-identification des traces de mobilité): 
 accuracy=$(bash getRate.sh "AP-Attack rate" $log)   # "POI-Attack rate" dans le cas de poi-attack
