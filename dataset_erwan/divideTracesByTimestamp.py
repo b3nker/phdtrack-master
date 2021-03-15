@@ -63,6 +63,8 @@ def processCsvTraceFile(filename,inputDirectory,outputDirectory,sliceSize):
 		value.to_csv(os.path.join(outputDirectory, name+"-"+str(int(key))+".csv"),index=False,columns=['id','lat','lng','timestamp'],header=False)
 		#cpt=cpt+1
 
+startTimer = time.time()
+
 #Start of script
 
 NB_PROCESS = psutil.cpu_count(logical=False)
@@ -85,3 +87,7 @@ futures = [executor.submit(processCsvTraceFile,filename,inputDirectory,outputDir
 #futures = [processCsvTraceFile(filename,inputDirectory,outputDirectory,sliceSize) for filename in os.listdir(inputDirectory) if filename.endswith(".csv")]
 # Wait for the processes to finish
 concurrent.futures.wait(futures)
+
+endTimer = time.time()
+totalTime = endTimer - startTimer
+print("Execution time splitting the dataset by timestamp of",sliceSize, "sec : ",totalTime,"sec")

@@ -47,5 +47,5 @@ with open(datasetPath) as f:
 
 endTimer = time.time()
 totalTime = endTimer - startTimer
-print(totalTime,"sec")
+print("Execution time splitting the dataset by user : ",totalTime,"sec")
 

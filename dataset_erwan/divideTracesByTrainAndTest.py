@@ -1,5 +1,6 @@
 import sys
 import os
+import time
 import numpy as np
 import math
 import itertools
@@ -16,6 +17,8 @@ def copyTrainTest(name,seq,total,percentile,inputDirectory,trainDir,testDir):
 	else:
 		shutil.copyfile(inputDirectory+str(name)+'.csv',testDir+'/'+ str(name)+'.csv')
 
+startTimer = time.time()
+
 #inputs
 inputDirectory = sys.argv[1]
 train = sys.argv[2]
@@ -25,7 +28,7 @@ ratio=0.5
 if len(sys.argv)>4:
 	ratio=float(sys.argv[4])
 
-print("ratio==",ratio)
+#print("ratio==",ratio)
 
 # mkdir the output directory
 if not os.path.exists(train):
@@ -67,7 +70,7 @@ for c in df.columns[1:]:
 df['count']=df.groupby(0)['name'].transform('count')
 df=df.reset_index()
 total=len(df)
-print(df)
+#print(df)
 
 seq=4546464
 currentUser=''
@@ -81,3 +84,7 @@ for index, row in df.iterrows():
 	#print(row['name'],seq,row['count'], row[0])
 	copyTrainTest(row['name'],seq,row['count'],ratio,inputDirectory,train,test)
 	currentUser=row[0]
+
+endTimer = time.time()
+totalTime = endTimer - startTimer
+print("Execution time splitting the dataset in train and test directory : ",totalTime,"sec")
