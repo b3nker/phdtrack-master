@@ -19,10 +19,10 @@ output_directory = sys.argv[3]
 output_csv = open(output_directory + '/' + 'users_data.csv', "a")
 with open(user_prediction_file_path) as open_file_object:
     for line in open_file_object:
-        infos = line.split()
+        infos = line.rstrip("\n").split(',')
         user_id = infos[0]
         user_prediction = infos[1]
-        file_length = file_len(user_directory + '/' + user_id + '.csv')  # number of records for a given user
+        file_length = file_len(user_id + '.csv')  # number of records for a given user
         output_csv.write(user_id + ',' + user_prediction + ',' + str(file_length) + '\n')
 output_csv.close()
 
