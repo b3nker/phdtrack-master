@@ -9,4 +9,4 @@ jq -r '(.report.artifacts[] | select(.name=="MatMatchingKSetsnonObf/matches") | 
 python3 user_data_to_csv.py dataset/users/ $outputPathAndName $finalPathCsvfile
 
 #Exemple
-#bash outputsMatchesOfApAttack.sh Exemple-ap-attack/result/run-68501733ad322177af15826357255410e3c264fd.json dataset/result.csv dataset/final.csv
+#bash outputsMatchesOfApAttack.sh Exemple-ap-attack/result/XXX dataset/result.csv dataset/final.csv

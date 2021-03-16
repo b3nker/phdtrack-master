@@ -21,3 +21,4 @@ python3 dataset_benjamin/decoupage_dataset.py dataset/locations.csv dataset/user
 #Run split train test
 #python3 dataset_benjamin/decoupage_panda.py dataset/traces/ dataset/train_set/ dataset/test_set/ $ratio
 python3 dataset_benjamin/decoupage_percentage.py dataset/users dataset/train_set/ dataset/test_set/ $ratio
+

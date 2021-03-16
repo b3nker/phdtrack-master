@@ -43,7 +43,7 @@ for file in files:
         output_test.write(f.readline())
         it_test += 1
     f.close()
-    print("filename", file, "train :", lines_train, "test : ", lines_test)
+    #print("filename", file, "train :", lines_train, "test : ", lines_test)
 
 
 end_time = time.time()
