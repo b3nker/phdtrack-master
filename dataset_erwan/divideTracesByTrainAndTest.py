@@ -49,7 +49,7 @@ df=serie.str.split('-',expand=True)
 #print("df==",df)
 #print("df max==",df[1].max())
 for c in df.columns[1:]:
-	print(c)
+	#print(c)
 	df[c]=df[c].apply(int)
 
 #print("new df ==",df)
