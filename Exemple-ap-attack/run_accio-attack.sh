@@ -24,4 +24,3 @@ echo "$accuracy"
 
 #bash Exemple-ap-attack/run_accio-attack.sh mini-priva/result-mini-priva/train-merged-accio/  mini-priva/result-mini-priva/test-accio/ Exemple-ap-attack/result/
 
-

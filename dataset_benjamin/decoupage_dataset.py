@@ -10,6 +10,7 @@ def date_to_millis(date):
     timestamp_ms = dt.timestamp() * 1000
     return int(timestamp_ms)
 
+my_set = {}
 
 #Start timer
 start_time = time.time()
@@ -19,8 +20,10 @@ outputDirectory = sys.argv[2]
 nbrows = int(sys.argv[3])
 #Creates a dataframe
 df = pd.read_csv(datasetPath, nrows=nbrows)
+#print(df.head())
 #print(df.phone.nunique()) #nb of unique users
 #Splits location column into 2 columns lat and long
+
 df[['lat', 'long']] = df['location'].str.split('|', 1, expand=True)
 df.drop('location', inplace=True, axis=1)
 
@@ -32,6 +35,10 @@ cpt = 0
 #Reads dataframe line by line
 for index, row in df.iterrows():
     row_id = row['phone']
+    #row_location = row['location']
+    #location = row_location.split('|')
+    #row_lat = location[0]
+    #row_long = location[1]
     row_lat = row['lat'] #dataset is wrong, lat is long 
     row_long = row['long'] #dataset is wrong, long is lat
     row_time = date_to_millis(row['time'])
@@ -42,7 +49,7 @@ for index, row in df.iterrows():
         cpt += 1
         if not os.path.exists(outputDirectory + '/' + str(cpt) +".csv"):
             current_file = open(outputDirectory + '/' + str(cpt) +".csv", "a") # a: append
-            current_file.write("id_user,lat,long,timestamp\n")
+            #current_file.write("id_user,lat,long,timestamp\n")
         else:
             current_file = open(outputDirectory + '/' + str(cpt) +".csv", "a") # a: append
     current_file.write(str(cpt) + ',' + str(row_long) + ',' + str(row_lat) + ',' + str(row_time) + '\n') #long -> lat and lat -> long

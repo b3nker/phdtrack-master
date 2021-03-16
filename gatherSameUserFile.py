@@ -5,7 +5,7 @@ import os
 inputDirectory = sys.argv[1]
 
 files = [filename for filename in os.listdir(inputDirectory) if filename.endswith("-0.csv") ]
-
+print(files)
 for file_name in files :
 	f1 = open(inputDirectory+"/"+file_name, 'a+')
 	id = str(file_name).split('-')[0]
