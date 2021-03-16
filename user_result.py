@@ -1,5 +1,6 @@
 import sys
 import matplotlib.pyplot as plt
+import numpy as np
 
 inputFile = sys.argv[1]
 # Well predicted
@@ -9,20 +10,39 @@ records_wp = []
 # Badly predicted
 id_bp = []
 records_bp = []
-
+i = 0
 with open(inputFile) as open_file_object:
     for line in open_file_object:
         infos = line.rstrip("\n").split(',')
         if infos[0] == infos[1]:  # compare id and prediction_id
             id_wp.append(infos[0])
-            records_wp.append(infos[2])
+            records_wp.append(int(infos[2]))
         else:
             id_bp.append(infos[0])
-            records_bp.append(infos[2])
+            records_bp.append(int(infos[2]))
 
-fig = plt.figure()
-fig
-ax = fig.add_axes([0, 0, 1, 1])
-ax.bar(id_bp, records_bp)  # x, y
-plt.legend("Well predicted users")
+percentage = round(len(id_wp) / (len(id_wp) + len(id_bp)),2)
+mean_nb_record_wp = np.sum(records_wp)/len(records_wp)
+mean_nb_record_bp = np.sum(records_bp)/len(records_bp)
+
+# Plot 1
+y_pos = np.arange(len(id_wp))
+plt.bar(y_pos, records_wp, align='center', alpha=0.5)
+plt.xticks(y_pos, id_wp)
+plt.ylabel('#records')
+plt.title('Number of record per user re-identified')
 plt.show()
+
+
+# Plot 2
+y_pos = np.arange(len(id_bp))
+plt.bar(y_pos, records_bp, align='center', alpha=0.5)
+plt.xticks(y_pos, id_bp)
+plt.ylabel('#records')
+plt.title('Number of record per user badly re-identified')
+plt.show()
+
+#printing data
+print('re-identification (%): ', percentage, '\n' +
+      'mean #records (re-identified): ', round(mean_nb_record_wp), '\n' +
+      'mean #records (not re-identified): ', round(mean_nb_record_bp))

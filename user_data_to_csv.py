@@ -16,7 +16,7 @@ user_prediction_file_path = sys.argv[2]
 
 
 output_directory = sys.argv[3]
-output_csv = open(output_directory + '/' + 'users_data.csv', "a")
+output_csv = open(output_directory, "a")
 with open(user_prediction_file_path) as open_file_object:
     for line in open_file_object:
         infos = line.rstrip("\n").split(',')
