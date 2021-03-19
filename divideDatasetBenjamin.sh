@@ -3,7 +3,7 @@ numberOfLine=$1
 ratio=$3
 
 #clean le directory
-rm -r dataset/test
+rm -r dataset/users
 rm -r dataset/traces
 rm -r dataset/test_set
 rm -r dataset/train_set
