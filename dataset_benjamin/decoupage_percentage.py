@@ -26,7 +26,7 @@ if not os.path.exists(testDirectory):
     os.makedirs(testDirectory)
 
 files = [filename for filename in os.listdir(userDirectory)]
-print(files)
+#print(files)
 for file in files:
     file_length = file_len(file)
     lines_train = math.ceil(file_length*ratio)
@@ -43,7 +43,7 @@ for file in files:
         output_test.write(f.readline())
         it_test += 1
     f.close()
-    print("filename", file, "train :", lines_train, "test : ", lines_test)
+    #print("filename", file, "train :", lines_train, "test : ", lines_test)
 
 
 end_time = time.time()
