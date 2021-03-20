@@ -15,7 +15,7 @@ python3 dataset_erwan/divideDatasetByUser.py ../dataset/locations.csv dataset_er
 
 #Run decoupage en intervalle de temps
 #Découpe chaque fichier d'utilisateur en X trace de Y secondes
-python3 dataset_erwan/divideTracesByTimestamp.py dataset_erwan/decoupages_dataset/slicesByUser/ dataset_erwan/decoupages_dataset/slicesByTimestamp $timestamp
+#python3 dataset_erwan/divideTracesByTimestamp.py dataset_erwan/decoupages_dataset/slicesByUser/ dataset_erwan/decoupages_dataset/slicesByTimestamp $timestamp
 
 #Run split train test
 python3 dataset_erwan/divideTracesByTrainAndTest.py dataset_erwan/decoupages_dataset/slicesByTimestamp/ dataset_erwan/decoupages_dataset/train dataset_erwan/decoupages_dataset/test
