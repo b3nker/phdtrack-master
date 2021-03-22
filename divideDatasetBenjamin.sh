@@ -1,6 +1,6 @@
 numberOfLine=$1
 #timestamp=$2
-ratio=$3
+ratio=$2
 
 #clean le directory
 rm -r dataset/users
@@ -22,3 +22,5 @@ python3 dataset_benjamin/decoupage_dataset.py dataset/locations.csv dataset/user
 #python3 dataset_benjamin/decoupage_panda.py dataset/traces/ dataset/train_set/ dataset/test_set/ $ratio
 python3 dataset_benjamin/decoupage_percentage.py dataset/users dataset/train_set/ dataset/test_set/ $ratio
 
+#Run accio with AP-Attack
+bash Exemple-ap-attack/run_accio-attack.sh dataset/train_set dataset/test_set dataset/accio_output/
