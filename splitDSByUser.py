@@ -5,7 +5,6 @@ from datetime import datetime
 
 datasetPath = sys.argv[1]
 outputDirectory = sys.argv[2]
-numberOfLine = int(sys.argv[3])
 
 if not os.path.exists(outputDirectory):
 	os.makedirs(outputDirectory)
@@ -13,7 +12,6 @@ if not os.path.exists(outputDirectory):
 startTimer = time.time()
 with open(datasetPath) as f:
 	next(f)
-	i = 1
 	new_id_user = 1
 	curFile = open(outputDirectory+"/"+str(new_id_user) + ".csv", "a")
 	tmp_line = next(f)
@@ -46,10 +44,7 @@ with open(datasetPath) as f:
 		dt = datetime.strptime(timeStamp,'%Y-%m-%d %H:%M:%S')
 		timestamp_ms = int(dt.timestamp() * 1000)
 		timestamp_ms_str = str(timestamp_ms)
-		curFile.write(str(new_id_user)+","+latitude+","+longitude+","+timestamp_ms_str+"\n")			
-		i=i+1
-		if i>=numberOfLine :
-			break
+		curFile.write(str(new_id_user)+","+latitude+","+longitude+","+timestamp_ms_str+"\n")	
 
 endTimer = time.time()
 totalTime = endTimer - startTimer
