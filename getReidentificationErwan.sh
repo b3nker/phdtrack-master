@@ -10,14 +10,14 @@ mkdir dataset/result_ap-attack
 
 #Run decoupage dataset erwan
 #Lit le dataset et le coupe en fichiers par utilisateur dans le dossier test
-python3 dataset_erwan/divideDatasetByUser.py ../dataset/locations.csv dataset/users $numberOfLine
+python3 test-decoupageDS_erwan/divideDatasetByUser.py ../dataset/locations_sort.csv dataset/users $numberOfLine
 
 #Run decoupage en intervalle de temps
 #Découpe chaque fichier d'utilisateur en X trace de Y secondes
-#python3 dataset_erwan/divideTracesByTimestamp.py dataset_erwan/decoupages_dataset/slicesByUser/ dataset_erwan/decoupages_dataset/slicesByTimestamp $timestamp
+#python3 test-decoupageDS_erwan/divideTracesByTimestamp.py test-decoupageDS_erwan/decoupages_dataset/slicesByUser/ test-decoupageDS_erwan/decoupages_dataset/slicesByTimestamp $timestamp
 
 #Run split train test
-python3 dataset_erwan/splitFullTracesInTrainAndTest.py dataset/slicesByUser/ dataset/train dataset/test
+python3 test-decoupageDS_erwan/splitFullTracesInTrainAndTest.py dataset/slicesByUser/ dataset/train dataset/test
 
 #run ap-attack
 sh Exemple-ap-attack/run_accio-attack.sh dataset/train/ dataset/test/ dataset/result_ap-attack/
