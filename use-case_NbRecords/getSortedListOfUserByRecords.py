@@ -1,7 +1,7 @@
 import os
 import sys
 sys.path.append('../')
-from user_data_to_csv import file_len
+from lib.user_data_to_csv import file_len
 
 inputDirectory = sys.argv[1]
 files = [filename for filename in os.listdir(inputDirectory) if filename.endswith(".csv")]

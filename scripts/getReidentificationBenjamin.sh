@@ -36,7 +36,7 @@ matchesJson=$(find dataset/accio_output/ -type f -iname "run*");
 jq -r '(.report.artifacts[] | select(.name=="MatMatchingKSetsnonObf/matches") | .value) | to_entries | map([.key, .value])[] | @csv' $matchesJson | sed 's/"//g' > dataset/matches.csv
 
 #Parse previous csv and find number of records by user to get  : "User_id; Prediction_id; Nb_lines"
-python3 user_data_to_csv.py dataset/users/ dataset/matches.csv dataset/results.csv
+python3 lib/user_data_to_csv.py dataset/users/ dataset/matches.csv dataset/results.csv
 
 
 rm -r dataset/matches.csv
