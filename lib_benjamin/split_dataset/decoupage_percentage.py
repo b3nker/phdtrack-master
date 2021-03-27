@@ -3,11 +3,8 @@ import os
 import sys
 import time
 
-def file_len(fname):
-    with open(userDirectory + '/' + fname) as f:
-        for i, l in enumerate(f):
-            pass
-    return i + 1
+sys.path.append('.') # relative to where you execute the command/script
+from lib.utils import file_len
 
 start_time = time.time()
 # inputs
@@ -28,7 +25,7 @@ if not os.path.exists(testDirectory):
 files = [filename for filename in os.listdir(userDirectory)]
 #print(files)
 for file in files:
-    file_length = file_len(file)
+    file_length = file_len(userDirectory + '/' + file)
     lines_train = math.ceil(file_length*ratio)
     lines_test = file_length - lines_train
     it_train = 0
