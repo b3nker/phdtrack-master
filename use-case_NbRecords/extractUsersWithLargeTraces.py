@@ -6,11 +6,11 @@ import time
 
 inputFile = sys.argv[1]
 outputDirectory = sys.argv[2]
-restartProcessing = sys.argv[3]
+restartProcess = sys.argv[3]
 usersAlreadyInSet = sys.argv[4]
 nbOfUsersToRead = int(sys.argv[5])
 
-if restartProcessing.lower() == 'true' :
+if restartProcess.lower() == 'true' :
 	open(usersAlreadyInSet, 'w').close()
 	if os.path.exists(outputDirectory):
 		shutil.rmtree(outputDirectory)
