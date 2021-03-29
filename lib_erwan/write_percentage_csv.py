@@ -1,16 +1,13 @@
 import sys
-sys.path.append('.')  # relative to where you execute the command/script
+sys.path.append('..')  # relative to where you execute the command/script
 from lib.utils import file_len
 
 # Write data in the following format {nb of users, %re-identification}
 
 # Inputs
-path_selected_user_csv = sys.argv[1]
+number_users = int(sys.argv[1])
 path_matches_csv = sys.argv[2]
-PATH_RESULT_RANDOM_USECASE = 'dataset/result_random_usecase.csv'
-
-#find number of unique users
-number_users = file_len(path_selected_user_csv)
+PATH_RESULT_MAXRECORDS_USECASE = '../use-case_NbRecords/result_MaxRecords_usecase.csv'
 
 #find number of re-identified users
 number_reidentified = 0
@@ -26,7 +23,7 @@ with open(path_matches_csv) as f:
 reid_rate = round(number_reidentified/number_users, 2)
 
 # Write to csv
-file = open(PATH_RESULT_RANDOM_USECASE, "a")
+file = open(PATH_RESULT_MAXRECORDS_USECASE, "a")
 file.write(str(number_users) + ',' + str(reid_rate) + '\n')
 
 print('number_users : ', number_users, 're-id rate : ', reid_rate)
