@@ -1,6 +1,7 @@
 nbUsers=$1
 ratio=$2
 ## Cleaning repos
+mkdir dataset/accio_output
 #rm -r dataset/users
 ### 1st step : Extract all users data in separated files
 ## Hypothesis -> Raw data are sorted by users
