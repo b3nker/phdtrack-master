@@ -7,6 +7,7 @@ TOTAL_NUMBER_USERS = 642548
 # inputs
 number_of_users = int(sys.argv[1])
 path_to_selected_id_users = sys.argv[2]
+path_to_added_users = 'dataset/added_users.csv'
 
 # check previously selected users
 id_user_selected = set()
@@ -15,6 +16,7 @@ if os.path.isfile(path_to_selected_id_users):
         for line in f:
             id_user_selected.add(int(line.rstrip('\n')))
 file = open(path_to_selected_id_users, "a")
+file2 = open(path_to_added_users, "a")
 # add selected id to csv
 for i in range(number_of_users):
     while True:
@@ -22,5 +24,6 @@ for i in range(number_of_users):
         if random_id_user not in id_user_selected:
             break
     file.write(str(random_id_user) + '\n')
+    file2.write(str(random_id_user) + '\n')
     id_user_selected.add(random_id_user)
-    
+
