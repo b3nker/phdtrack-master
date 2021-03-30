@@ -5,9 +5,10 @@ from lib.utils import file_len
 # Write data in the following format {nb of users, %re-identification}
 
 # Inputs
-number_users = int(sys.argv[1])
-path_matches_csv = sys.argv[2]
-PATH_RESULT_MAXRECORDS_USECASE = '../use-case_NbRecords/result_MaxRecords_usecase.csv'
+path_matches_csv = sys.argv[1]
+PATH_RESULT_MAXRECORDS_USECASE = '../use-case_NbRecords/result_%MaxRecords_usecase.csv'
+number_users = file_len("../use-case_NbRecords/usersRead.csv")
+print(number_users)
 
 #find number of re-identified users
 number_reidentified = 0
@@ -26,4 +27,4 @@ reid_rate = round(number_reidentified/number_users, 2)
 file = open(PATH_RESULT_MAXRECORDS_USECASE, "a")
 file.write(str(number_users) + ',' + str(reid_rate) + '\n')
 
-print('number_users : ', number_users, 're-id rate : ', reid_rate)
+print('number_users : ', number_users, '--> re-id rate : ', reid_rate)

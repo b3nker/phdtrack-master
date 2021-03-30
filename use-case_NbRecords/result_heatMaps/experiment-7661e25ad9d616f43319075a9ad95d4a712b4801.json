@@ -1,0 +1,163 @@
+{
+  "id" : "7661e25ad9d616f43319075a9ad95d4a712b4801",
+  "name" : "ap-attack_heatMap",
+  "workflow" : {
+    "graph" : [
+      {
+        "name" : "EventSourceTrain",
+        "op" : "EventSource",
+        "inputs" : {
+          "url" : {
+            "param" : "urlTrain",
+            "default_value" : "train/"
+          },
+          "kind" : {
+            "value" : "csv"
+          },
+          "sample" : {
+            "value" : null
+          },
+          "users" : {
+            "value" : [ ]
+          }
+        },
+        "outputs" : {
+          "data" : [
+            "HeatMapGeneratornonObf/train"
+          ]
+        }
+      },
+      {
+        "name" : "EventSourceTest",
+        "op" : "EventSource",
+        "inputs" : {
+          "url" : {
+            "param" : "urlTest",
+            "default_value" : "test/"
+          },
+          "kind" : {
+            "value" : "csv"
+          },
+          "sample" : {
+            "value" : null
+          },
+          "users" : {
+            "value" : [ ]
+          }
+        },
+        "outputs" : {
+          "data" : [
+            "HeatMapGeneratornonObf/test"
+          ]
+        }
+      },
+      {
+        "name" : "HeatMapGeneratornonObf",
+        "op" : "HeatMapGenerator",
+        "inputs" : {
+          "test" : {
+            "reference" : "EventSourceTest/data"
+          },
+          "dt" : {
+            "value" : 86400000
+          },
+          "distanceType" : {
+            "param" : "distanceType",
+            "default_value" : -51
+          },
+          "diag" : {
+            "value" : "250000.0.meters"
+          },
+          "matrixType" : {
+            "param" : "matrixType",
+            "default_value" : "full"
+          },
+          "cellSize" : {
+            "param" : "cellSize",
+            "default_value" : "800.0.meters"
+          },
+          "lat1" : {
+            "value" : -61.0
+          },
+          "dtTest" : {
+            "value" : null
+          },
+          "lat2" : {
+            "value" : 80.0
+          },
+          "lng2" : {
+            "value" : 171.0
+          },
+          "train" : {
+            "reference" : "EventSourceTrain/data"
+          },
+          "ang" : {
+            "value" : 45.0
+          },
+          "lng1" : {
+            "value" : -131.0
+          }
+        },
+        "outputs" : { }
+      }
+    ],
+    "owner" : "Besma",
+    "name" : "A",
+    "params" : [
+      {
+        "name" : "urlTrain",
+        "type" : "string",
+        "is_optional" : true,
+        "ports" : [
+          "EventSourceTrain/url"
+        ]
+      },
+      {
+        "name" : "distanceType",
+        "type" : "integer",
+        "is_optional" : true,
+        "ports" : [
+          "HeatMapGeneratornonObf/distanceType"
+        ]
+      },
+      {
+        "name" : "cellSize",
+        "type" : "distance",
+        "is_optional" : true,
+        "ports" : [
+          "HeatMapGeneratornonObf/cellSize"
+        ]
+      },
+      {
+        "name" : "matrixType",
+        "type" : "string",
+        "is_optional" : true,
+        "ports" : [
+          "HeatMapGeneratornonObf/matrixType"
+        ]
+      },
+      {
+        "name" : "urlTest",
+        "type" : "string",
+        "is_optional" : true,
+        "ports" : [
+          "EventSourceTest/url"
+        ]
+      }
+    ]
+  },
+  "owner" : "erwan",
+  "repeat" : 1,
+  "tags" : [ ],
+  "params" : { },
+  "seed" : 6976792975223693307,
+  "report" : {
+    "started_at" : 1617100148321,
+    "completed_at" : 1617100148604,
+    "runs" : [
+      "173a0b77d67de5528698718b1556baf7bb758eee"
+    ],
+    "duration" : 283,
+    "completed" : true
+  }
+}

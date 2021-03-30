@@ -6,14 +6,9 @@ import time
 
 inputFile = sys.argv[1]
 outputDirectory = sys.argv[2]
-restartProcess = sys.argv[3]
-usersAlreadyInSet = sys.argv[4]
-nbOfUsersToRead = int(sys.argv[5])
+nbOfUsersToRead = int(sys.argv[3])
 
-if restartProcess.lower() == 'true' :
-	open(usersAlreadyInSet, 'w').close()
-	if os.path.exists(outputDirectory):
-		shutil.rmtree(outputDirectory)
+usersAlreadyInSet = "../use-case_NbRecords/usersRead.csv"
 
 if not os.path.exists(outputDirectory):
 	os.makedirs(outputDirectory)

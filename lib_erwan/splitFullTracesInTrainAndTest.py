@@ -25,6 +25,10 @@ if not os.path.exists(trainDirectory):
 if not os.path.exists(testDirectory):
     os.makedirs(testDirectory)
 
+#DIR=trainDirectory
+#print("LENGTH OF TRAIN DIR")
+#print(len([name for name in os.listdir(DIR) if os.path.isfile(os.path.join(DIR, name))]))
+
 files = [filename for filename in os.listdir(userDirectory)]
 #print(files)
 for file in files:
@@ -44,7 +48,6 @@ for file in files:
         it_test += 1
     f.close()
     #print("filename", file, "train :", lines_train, "test : ", lines_test)
-
 
 end_time = time.time()
 print("Spliting dataset in", ratio, "train, and ", round(1 - ratio, 2), "test\nExecution time : ",
