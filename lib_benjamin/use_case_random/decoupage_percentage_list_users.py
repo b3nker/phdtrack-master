@@ -11,7 +11,7 @@ start_time = time.time()
 userDirectory = sys.argv[1]
 trainDirectory = sys.argv[2]
 testDirectory = sys.argv[3]
-path_to_selected_id_users = sys.argv[4]
+path_to_selected_id_users = sys.argv[4] # just for current iteration
 
 ratio = 0.8
 if len(sys.argv) > 5:
@@ -30,7 +30,6 @@ id_set = set()
 with open(path_to_selected_id_users) as f:
     for line in f:
         id_set.add(line.rstrip('\n'))
-print("nb of unique users :", len(id_set))
 for id in id_set:
     file_length = file_len(userDirectory + id + '.csv')
     lines_train = math.ceil(file_length * ratio)
