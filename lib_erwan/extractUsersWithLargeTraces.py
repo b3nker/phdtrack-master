@@ -8,7 +8,7 @@ inputFile = sys.argv[1]
 outputDirectory = sys.argv[2]
 nbOfUsersToRead = int(sys.argv[3])
 
-usersAlreadyInSet = "../use-case_NbRecords/usersRead.csv"
+usersAlreadyInSet = "usecase_NbRecords/usersRead.csv"
 
 if not os.path.exists(outputDirectory):
 	os.makedirs(outputDirectory)
@@ -28,7 +28,7 @@ usersDf = pd.read_csv(inputFile,sep='-', names=['id','nbRows'], header=None, ski
 
 for index, row in usersDf.iterrows():
 	fileName = str(row['id'])+'.csv'
-	shutil.copyfile('../record_dataset/users/'+fileName, outputDirectory+ (fileName if outputDirectory.endswith('/') else '/'+fileName))
+	shutil.copyfile('record_dataset/users/'+fileName, outputDirectory+ (fileName if outputDirectory.endswith('/') else '/'+fileName))
 
 usersDf.to_csv(usersAlreadyInSet, columns=['id'], mode='a', index=False, header=False)
 

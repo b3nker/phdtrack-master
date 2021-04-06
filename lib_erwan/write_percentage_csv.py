@@ -1,13 +1,13 @@
 import sys
-sys.path.append('..')  # relative to where you execute the command/script
+sys.path.append('.')  # relative to where you execute the command/script
 from lib.utils import file_len
 
 # Write data in the following format {nb of users, %re-identification}
 
 # Inputs
 path_matches_csv = sys.argv[1]
-PATH_RESULT_MAXRECORDS_USECASE = '../use-case_NbRecords/result_%MaxRecords_usecase.csv'
-number_users = file_len("../use-case_NbRecords/usersRead.csv")
+PATH_RESULT_MAXRECORDS_USECASE = 'usecase_NbRecords/result_%MaxRecords_usecase.csv'
+number_users = file_len("usecase_NbRecords/usersRead.csv")
 print(number_users)
 
 #find number of re-identified users
