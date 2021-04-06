@@ -8,7 +8,7 @@
       "name": "EventSourceTrain",
       "inputs": {
             "url" : {"param": "urlTrain" ,
-                    "default_value" : "train/"
+                    "default_value" : "../usecase_NbRecords/train/"
                     },
         "kind": {"value": "csv"}
       }
@@ -18,7 +18,7 @@
       "name": "EventSourceTest",
       "inputs": {
             "url" : {"param": "urlTest" ,
-                    "default_value" : "test/"
+                    "default_value" : "../usecase_NbRecords/test/"
                     },
         "kind": {"value": "csv"}
       }
@@ -35,9 +35,15 @@
         "cellSize": {"param": "cellSize" ,
                     "default_value" : "800.meters"
                     },
-                            "matrixType": {"param": "matrixType" ,
+        "matrixType": {"param": "matrixType" ,
                     "default_value" : "full"
                     },
+        "dtTest": {"param": "dtTest" ,
+                      "default_value" : "8000000.seconds"
+                    },
+        "dt": {"param": "dt" ,
+          "default_value" : "8000000.seconds"
+        },
         "lat1": {"value": "-61"},
         "lng1": {"value": "-131"},
         "lat2": {"value": "80"},
