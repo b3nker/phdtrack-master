@@ -4,8 +4,8 @@ import pandas as pd
 import math
 import numpy as np
 
+
 def topsoe_distance(p, q):
-	print(p, q)
 	v=0
 	for i in range(0,len(p)):
 		#print(v)
@@ -15,19 +15,16 @@ def topsoe_distance(p, q):
 		v = v + (p[i]*math.log((2*p[i])/( p[i]+q[i])) + q[i]* math.log((2*q[i])/( p[i]+q[i])))
 	return v
 
-
-def heatmap_to_matrix(path):
-	df = pd.read_csv(path)
-	df.drop(df.columns[[1,2]], axis=1, inplace=True)
-	df = df.to_numpy()
-	return df
-
-
-# Inputs
-path_heatmap_test = sys.argv[1]
-path_heatmap_train = sys.argv[2]
-
-def find(test_row, df_train):
-
-matrix_test = heatmap_to_matrix(path_heatmap_test)
-matrix_train = heatmap_to_matrix(path_heatmap_train)
+def find_prediction(test_row, df_train):
+	best_distance = -1
+	predicted_user = -1
+	id_user = int(test_row[0])
+	p = test_row[1: len(test_row) - 1]
+	for index, row in df_train.iterrows():
+		cur_user = int(row[0])
+		q = row[1:len(row) - 1]
+		distance = topsoe_distance(p, q)
+		if best_distance < 0 or best_distance < distance:
+			best_distance = distance
+			predicted_user = cur_user
+	print("initial user : ", id_user, " predicted user :", predicted_user, "topsoe_distance : ", best_distance)
