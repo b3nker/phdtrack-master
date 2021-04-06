@@ -1,9 +1,8 @@
 #Clean the directories
 rm -r ../result_heatMaps
-
 #Create the directory
-mkdir ../result_heatMaps
-mkdir ../result_heatMaps/data
+mkdir ../result_heatMaps/
+mkdir ../result_heatMaps/data/
 
 json="../ap-attack_heatMap.json"  
 workdir=../result_heatMaps

@@ -46,6 +46,9 @@ for id in id_set:
         output_test.write(f.readline())
         it_test += 1
     f.close()
+    if(lines_test == 0):
+        os.remove(trainDirectory + id + '.csv')
+        os.remove(testDirectory + id + '.csv')
     # print("filename", file, "train :", lines_train, "test : ", lines_test)
 end_time = time.time()
 print("Spliting dataset in", ratio, "train, and ", round(1 - ratio, 2), "test\nExecution time : ",
