@@ -6,8 +6,12 @@ from lib.utils import file_len
 
 # Inputs
 path_matches_csv = sys.argv[1]
-PATH_RESULT_MAXRECORDS_USECASE = 'usecase_NbRecords/result_%MaxRecords_usecase.csv'
-number_users = file_len("usecase_NbRecords/usersRead.csv")
+if len(sys.argv) > 2:
+    PATH_RESULT_MAXRECORDS_USECASE = sys.argv[2]
+else :
+    PATH_RESULT_MAXRECORDS_USECASE = 'usecase_NbRecords/result_%MaxRecords_usecase.csv'
+
+number_users = file_len(path_matches_csv)#"usecase_NbRecords/usersRead.csv")
 print(number_users)
 
 #find number of re-identified users

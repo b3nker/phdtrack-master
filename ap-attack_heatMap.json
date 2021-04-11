@@ -8,7 +8,7 @@
       "name": "EventSourceTrain",
       "inputs": {
             "url" : {"param": "urlTrain" ,
-                    "default_value" : "../dataset/train_set/"
+                    "default_value" : "usecase_NbRecords/train/"
                     },
         "kind": {"value": "csv"}
       }
@@ -18,7 +18,7 @@
       "name": "EventSourceTest",
       "inputs": {
             "url" : {"param": "urlTest" ,
-                    "default_value" : "../dataset/test_set/"
+                    "default_value" : "usecase_NbRecords/test/"
                     },
         "kind": {"value": "csv"}
       }
