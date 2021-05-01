@@ -9,9 +9,9 @@ path_matches_csv = sys.argv[1]
 if len(sys.argv) > 2:
     PATH_RESULT_MAXRECORDS_USECASE = sys.argv[2]
 else :
-    PATH_RESULT_MAXRECORDS_USECASE = 'usecase_NbRecords/result_%MaxRecords_usecase.csv'
+    PATH_RESULT_MAXRECORDS_USECASE = 'dataset/result_%MaxRecords_usecase.csv'
 
-number_users = file_len(path_matches_csv)#"usecase_NbRecords/usersRead.csv")
+number_users = file_len(path_matches_csv)#"dataset/usersRead.csv")
 print(number_users)
 
 #find number of re-identified users

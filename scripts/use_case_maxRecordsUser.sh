@@ -2,7 +2,7 @@ numberOfUserPerIteration=$1
 restartProcess=$2
 END=$3
 
-PATH_FILES=usecase_NbRecords
+PATH_FILES=dataset
 
 if [ "$restartProcess" = "True" ]
 then
@@ -38,7 +38,7 @@ python3 lib_erwan/splitFullTracesInTrainAndTest.py $PATH_FILES/usersToRead/ $PAT
 
 #Run ap-attack
 sh Exemple-ap-attack/run_accio-attack.sh $PATH_FILES/train/ $PATH_FILES/test/ $PATH_FILES/result_ap-attack/
-OUTPUT_FILE=$(find usecase_NbRecords/result_ap-attack/ -type f -iname "run*");
+OUTPUT_FILE=$(find dataset/result_ap-attack/ -type f -iname "run*");
 
 #Parse matches into a csv file with the following attributes: id_user, id_predicted
 jq -r '(.report.artifacts[] | select(.name=="MatMatchingKSetsnonObf/matches") | .value) | to_entries | map([.key, .value])[] | @csv' $OUTPUT_FILE | sed 's/"//g' > $PATH_FILES/matches.csv

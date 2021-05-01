@@ -8,7 +8,7 @@ inputFile = sys.argv[1]
 outputDirectory = sys.argv[2]
 nbOfUsersToRead = int(sys.argv[3])
 
-usersAlreadyInSet = "usecase_NbRecords/usersRead.csv"
+usersAlreadyInSet = "dataset/usersRead.csv"
 
 if not os.path.exists(outputDirectory):
 	os.makedirs(outputDirectory)

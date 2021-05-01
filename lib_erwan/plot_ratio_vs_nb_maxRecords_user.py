@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-PATH_RESULT_MAXRECORDS_USECASE = 'usecase_NbRecords/result_%MaxRecords_usecase.csv'
+PATH_RESULT_MAXRECORDS_USECASE = 'dataset/result_%MaxRecords_usecase.csv'
 
 nb_users = [] # x-coordinates
 ratios = [] # y-coordinates
