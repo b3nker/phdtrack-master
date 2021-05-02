@@ -24,7 +24,7 @@ with open(usersAlreadyInSet,'r') as f :
 
 nbUsers=len(usersAlreadyAdded)
 
-usersDf = pd.read_csv(inputFile,sep='-', names=['id','nbRows'], header=None, skiprows=nbUsers, nrows=nbOfUsersToRead)
+usersDf = pd.read_csv(inputFile,sep=',', names=['id','nbRows'], header=None, skiprows=nbUsers, nrows=nbOfUsersToRead)
 
 for index, row in usersDf.iterrows():
 	fileName = str(row['id'])+'.csv'

@@ -50,5 +50,5 @@ for file in files:
     #print("filename", file, "train :", lines_train, "test : ", lines_test)
 
 end_time = time.time()
-print("Spliting dataset in", ratio, "train, and ", round(1 - ratio, 2), "test\nExecution time : ",
+print("Splitting dataset in", ratio, "train, and ", round(1 - ratio, 2), "test\nExecution time : ",
       end_time - start_time, " sec")
