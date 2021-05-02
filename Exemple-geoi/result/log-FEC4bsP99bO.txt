@@ -1,4 +1,0 @@
-Writing progress in [33m/home/khalfoun-besma/Documents/phdTrack/phdtrack-master/./Exemple-geoi/result[0m
-Experiment cc753c20: [32mgeoi[0m
-  Run c64f923a: [32mgeoi:url=./Exemple-geoi/result//data-accio[0m
-    EventSource    GeoIndistinguishability                               Done in 1s. Reports in [33m/home/khalfoun-besma/Documents/phdTrack/phdtrack-master/./Exemple-geoi/result[0m

@@ -7,10 +7,8 @@
 
 ## Project Structure
 - **Lib** : Contains 
-- **Scripts** :
-- **Exemple ap-attack** :
-- **Exemple-geoi** : 
-- **Exemple-trilateration**: 
+- **Scripts** : 
+- **Exemple ap-attack** : 
 
 ## Authors
 KERMANI Benjamin  

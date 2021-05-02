@@ -31,25 +31,25 @@ rm -r $PATH_FILES/usersToRead/
 mkdir $PATH_FILES/result_ap-attack
 
 #Extract Traces of users with biggest data
-python3 lib_erwan/extractUsersWithLargeTraces.py $PATH_FILES/nbRecordsPerUser.csv $PATH_FILES/usersToRead $numberOfUserPerIteration
+python3 lib_erwan/use_case_maxRecords/extractUsersWithLargeTraces.py $PATH_FILES/nbRecordsPerUser.csv $PATH_FILES/usersToRead $numberOfUserPerIteration
 
 #Run split train test
-python3 lib_erwan/splitFullTracesInTrainAndTest.py $PATH_FILES/usersToRead/ $PATH_FILES/train $PATH_FILES/test
+python3 lib_erwan/split_dataset/splitFullTracesInTrainAndTest.py $PATH_FILES/usersToRead/ $PATH_FILES/train $PATH_FILES/test
 
 #Run ap-attack
-sh Exemple-ap-attack/run_accio-attack.sh $PATH_FILES/train/ $PATH_FILES/test/ $PATH_FILES/result_ap-attack/
+sh scripts/run_accio-attack.sh $PATH_FILES/train/ $PATH_FILES/test/ $PATH_FILES/result_ap-attack/
 OUTPUT_FILE=$(find dataset/result_ap-attack/ -type f -iname "run*");
 
 #Parse matches into a csv file with the following attributes: id_user, id_predicted
 jq -r '(.report.artifacts[] | select(.name=="MatMatchingKSetsnonObf/matches") | .value) | to_entries | map([.key, .value])[] | @csv' $OUTPUT_FILE | sed 's/"//g' > $PATH_FILES/matches.csv
 
 #Write result to csv
-python3 lib_erwan/write_percentage_csv.py $PATH_FILES/matches.csv
+python3 lib_erwan/use_case_maxRecords/write_percentage_csv.py $PATH_FILES/matches.csv
 i=$(($i+1))
 done
 
 #Plot diagram
-python3 lib_erwan/plot_ratio_vs_nb_maxRecords_user.py
+python3 lib_erwan/use_case_maxRecords/plot_ratio_vs_nb_maxRecords_user.py
 
 #Parse previous csv file into a new csv
 #python3 lib/user_data_to_csv.py $PATH_FILES/usersToRead/ $PATH_FILES/matches.csv $PATH_FILES/final_results.csv
