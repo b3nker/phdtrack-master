@@ -26,8 +26,8 @@ This project allows the computation of the re-identification rate with different
 
 
 ## Authors
-[KERMANI Benjamin](https://github.com/b3nker)
-[VERSMEE Erwan](https://github.com/erwan-png)
+- [KERMANI Benjamin](https://github.com/b3nker)
+- [VERSMEE Erwan](https://github.com/erwan-png)
 
 ## Licence
 

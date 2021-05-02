@@ -10,4 +10,5 @@ decoupages_dataset/
 result_ap-attack/
 result_heatMaps/
 dataset/
+resultComparison/
 ap-attack_heatMap.json
